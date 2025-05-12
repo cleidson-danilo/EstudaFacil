@@ -7,20 +7,31 @@
   <link rel="stylesheet" href="estilos/estilo.css" />
 </head>
 <body>
-  
-  <header>
-    <h1>EstudaFácil</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="paginas/ferramentas.html">Ferramentas</a></li>
-        <li><a href="paginas/dicas.html">Dicas</a></li>
-        <li><a href="paginas/materiais.html">Materiais</a></li>
-        <li><a href="paginas/contato.html">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <h1>EstudaFácil</h1>
+  <nav class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">
+      ☰
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Início</a></li>      <li><a href="./paginas/sobre.html">Sobre</a></li>
+      <li><a href="./paginas/ferramentas.html">Ferramentas</a></li>
+      <li><a href="./paginas/dicas.html">Dicas</a></li>
+      <li><a href="./paginas/materiais.html">Materiais</a></li>
+      <li><a href="./paginas/contato.html">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    if (navLinks.style.display === "block") {
+      navLinks.style.display = "none";
+    } else {
+      navLinks.style.display = "block";
+    }
+  }
+</script>
 
   <section>
     <h2>Bem-vindo ao EstudaFácil</h2>
@@ -30,7 +41,7 @@
       <li>📚 Acesse conteúdos gratuitos</li>
       <li>💡 Descubra técnicas de memorização</li>
     </ul>
-    <a href="./paginas/ferramentas.html" class="btn">Comece agora</a>
+    <a href="../paginas/ferramentas.html" class="btn">Comece agora</a>
   </section>
 
   <section id="sobre">
@@ -47,5 +58,7 @@
   <footer>
     <p>&copy; 2025 EstudaFácil - Desenvolvido por estudantes de ADS</p>
   </footer>
+  <script src="./scripts/menu.js"></script>
+
 </body>
 </html>
