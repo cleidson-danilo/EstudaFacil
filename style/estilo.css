@@ -155,7 +155,7 @@ footer {
 }
 
 /* Responsividade para telas menores */
-@media (max-width: 668px) {
+@media (max-width: 720px) {
     header h1 {
         font-size: 1.6rem;
     }
