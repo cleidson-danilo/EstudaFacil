@@ -8,20 +8,35 @@
 </head>
 <body>
   <header>
-    <h1>EstudaFácil</h1>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Início</a></li>
-        <li><a href="../paginas/sobre.html">Sobre</a></li>
-        <li><a href="../paginas/ferramentas.html">Ferramentas</a></li>
-        <li><a href="../paginas/dicas.html">Dicas</a></li>
-        <li><a href="../paginas/materiais.html">Materiais</a></li>
-        <li><a href="../paginas/contato.html">Contato</a></li>
-      </ul>
-</nav>
-  </header>
-
+  <h1>EstudaFácil</h1>
+  <nav class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">
+      ☰
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Início</a></li>      
+      <li><a href="../paginas/sobre.html" class="active">Sobre</a></li>
+      <li><a href="../paginas/ferramentas.html">Ferramentas</a></li>
+      <li><a href="../paginas/dicas.html">Dicas</a></li>
+      <li><a href="../paginas/materiais.html">Materiais</a></li>
+      <li><a href="../paginas/contato.html">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    if (navLinks.style.display === "block") {
+      navLinks.style.display = "none";
+    } else {
+      navLinks.style.display = "block";
+    }
+  }
+</script>
   <section>
+    <h2>Sobre o EstudaFácil</h2>
+    <p>O EstudaFácil é uma plataforma desenvolvida para ajudar estudantes a se organizarem e se prepararem para concursos públicos. Com ferramentas práticas e dicas valiosas, buscamos tornar o processo de estudo mais eficiente e acessível.</p> 
+    
     <h2>Nossa Missão</h2>
     <p>Capacitar estudantes de concursos com uma plataforma prática, acessível e eficiente.</p>
 

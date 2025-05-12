@@ -8,19 +8,31 @@
 </head>
 <body>
   <header>
-    <h1>EstudaFácil</h1>
-    <nav>
-        <ul>
-        <li><a href="../index.html">Início</a></li>
-        <li><a href="../paginas/sobre.html">Sobre</a></li>
-        <li><a href="../paginas/ferramentas.html">Ferramentas</a></li>
-        <li><a href="../paginas/dicas.html">Dicas</a></li>
-        <li><a href="../paginas/materiais.html">Materiais</a></li>
-        <li><a href="../paginas/contato.html">Contato</a></li>
-          </ul>
-    </nav>
-  </header>
-
+  <h1>EstudaFácil</h1>
+  <nav class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">
+      ☰
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Início</a></li>      
+      <li><a href="../paginas/sobre.html">Sobre</a></li>
+      <li><a href="../paginas/ferramentas.html"class="active">Ferramentas</a></li>
+      <li><a href="../paginas/dicas.html">Dicas</a></li>
+      <li><a href="../paginas/materiais.html">Materiais</a></li>
+      <li><a href="../paginas/contato.html">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    if (navLinks.style.display === "block") {
+      navLinks.style.display = "none";
+    } else {
+      navLinks.style.display = "block";
+    }
+  }
+</script>
   <section>
     <h2>Ferramentas de Estudo</h2>
     <p>Utilize nossos recursos interativos para facilitar sua jornada até a aprovação:</p>
