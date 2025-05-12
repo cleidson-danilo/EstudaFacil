@@ -4,63 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EstudaFácil - Início</title>
-  <link rel="stylesheet" href="./style/estilo.css"/>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Seu CSS personalizado -->
+  <link rel="stylesheet" href="./style/estilo.css" />
 </head>
 <body>
-<header>
-  <h1>EstudaFácil</h1>
-  <nav class="navbar">
-    <div class="menu-icon" onclick="toggleMenu()">
-      ☰
+
+<!-- NAVBAR BOOTSTRAP -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">EstudaFácil</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./page/sobre.html">Sobre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./page/ferramentas.html">Ferramentas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./page/dicas.html">Dicas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./page/materiais.html">Materiais</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./page/contato.html">Contato</a>
+        </li>
+      </ul>
     </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html"class="active">Início</a></li>      
-      <li><a href="./page/sobre.html">Sobre</a></li>
-      <li><a href="./page/ferramentas.html">Ferramentas</a></li>
-      <li><a href="./page/dicas.html">Dicas</a></li>
-      <li><a href="./page/materiais.html">Materiais</a></li>
-      <li><a href="./page/contato.html">Contato</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  function toggleMenu() {
-    const navLinks = document.getElementById("navLinks");
-    if (navLinks.style.display === "block") {
-      navLinks.style.display = "none";
-    } else {
-      navLinks.style.display = "block";
-    }
-  }
-</script>
+  </div>
+</nav>
 
-  <section>
-    <h2>Bem-vindo ao EstudaFácil</h2>
-    <p>Organize seus estudos e conquiste sua aprovação em concursos públicos com nossas ferramentas, dicas e materiais gratuitos.</p>
-    <ul>
-      <li>📅 Crie seu cronograma de estudos</li>
-      <li>📚 Acesse conteúdos gratuitos</li>
-      <li>💡 Descubra técnicas de memorização</li>
-    </ul>
-    <a href="./page/ferramentas.html" class="btn">Comece agora</a>
-  </section>
+<!-- CONTEÚDO -->
+<section>
+  <h2>Bem-vindo ao EstudaFácil</h2>
+  <p>Organize seus estudos e conquiste sua aprovação em concursos públicos com nossas ferramentas, dicas e materiais gratuitos.</p>
+  <ul>
+    <li>📅 Crie seu cronograma de estudos</li>
+    <li>📚 Acesse conteúdos gratuitos</li>
+    <li>💡 Descubra técnicas de memorização</li>
+  </ul>
+  <a href="./page/ferramentas.html" class="btn">Comece agora</a>
+</section>
 
-  <section id="sobre">
-    <h2>Sobre o EstudaFácil</h2>
-    <p>O EstudaFácil é uma plataforma desenvolvida para ajudar estudantes a se organizarem e se prepararem para concursos públicos. Com ferramentas práticas e dicas valiosas, buscamos tornar o processo de estudo mais eficiente e acessível.</p> 
-    
-    <h2>Nossa Missão</h2>
-    <p>Capacitar estudantes de concursos com uma plataforma prática, acessível e eficiente.</p>
+<section id="sobre">
+  <h2>Sobre o EstudaFácil</h2>
+  <p>O EstudaFácil é uma plataforma desenvolvida para ajudar estudantes a se organizarem e se prepararem para concursos públicos. Com ferramentas práticas e dicas valiosas, buscamos tornar o processo de estudo mais eficiente e acessível.</p> 
+  
+  <h2>Nossa Missão</h2>
+  <p>Capacitar estudantes de concursos com uma plataforma prática, acessível e eficiente.</p>
 
-    <h3>Visão</h3>
-    <p>Ser referência em organização de estudos no Brasil até 2030.</p>
+  <h3>Visão</h3>
+  <p>Ser referência em organização de estudos no Brasil até 2030.</p>
 
-    <h3>Quem Somos</h3>
-    <p>Um grupo de estudantes de Análise e Desenvolvimento de Sistemas apaixonados por educação e tecnologia.</p>
-  </section>
+  <h3>Quem Somos</h3>
+  <p>Um grupo de estudantes de Análise e Desenvolvimento de Sistemas apaixonados por educação e tecnologia.</p>
+</section>
 
-  <footer>
-    <p>&copy; 2025 EstudaFácil - Desenvolvido por estudantes de ADS</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 EstudaFácil - Desenvolvido por estudantes de ADS</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

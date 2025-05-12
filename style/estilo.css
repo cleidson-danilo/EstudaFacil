@@ -15,61 +15,11 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-  header h1 {
+header h1 {
     text-align: left;
     margin: 0;
-  }
-
-/* Estilos para a barra de navegação */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  padding: 0 20px;
-  border-radius: 8px; /* Cantos arredondados */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #1e3a8a; /* Cor de fundo para destaque */
 }
 
-.logo {
-  font-size: 1.8rem;
-  color: white;
-  margin: 0;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
-
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: color 0.3s;
-}
-
-/* Estilo para destacar a página ativa na navbar */
-.nav-links li a.active {
-  color: #ffd700; /* Cor dourada para destacar */
-  font-weight: bold;
-  border-bottom: 2px solid #ffd700; /* Linha inferior para ênfase */
-}
-
-.nav-links li a:hover {
-  color: #a5c0ff;
-}
-
-.menu-icon {
-  display: none;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-}
 section {
     padding: 60px 30px;
     max-width: 1000px;
@@ -86,7 +36,7 @@ h2, h3 {
 
 .btn {
     display: inline-block;
-    background-color: #2563eb; /* azul médio */
+    background-color: #2563eb;
     color: white;
     padding: 12px 24px;
     text-decoration: none;
@@ -159,28 +109,6 @@ footer {
     header h1 {
         font-size: 1.6rem;
     }
-    /* Responsividade */
-  .nav-links {
-    flex-direction: column;
-    background-color: #1e3a8a;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 100%;
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-
-  .nav-links li {
-    margin-bottom: 10px; /* Espaçamento inferior entre os itens */
-  }
 
     section {
         padding: 30px 20px;
@@ -188,10 +116,10 @@ footer {
     }
 
     .btn {
-        width: 100%; /* Botão ocupa toda a largura */
-        text-align: center; /* Centraliza o texto */
-        padding: 12px 20px; /* Ajusta o espaçamento interno */
-        font-size: 1rem; /* Tamanho de texto adequado */
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 
     table {
@@ -214,15 +142,11 @@ footer {
         font-size: 1.4rem;
     }
 
-    nav ul {
-        gap: 10px;
-    }
-
     .btn {
-        width: 100%; /* Botão ocupa toda a largura */
-        text-align: center; /* Centraliza o texto */
-        padding: 12px 20px; /* Ajusta o espaçamento interno */
-        font-size: 1rem; /* Tamanho de texto adequado */
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 
     section {
@@ -235,19 +159,12 @@ footer {
     }
 }
 
-
 /* Posicionamento do h1 no canto esquerdo em telas desktop */
 @media (min-width: 669px) {
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-  }
-
-
-
-  .navbar {
-    margin-left: auto;
-  }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
 }
