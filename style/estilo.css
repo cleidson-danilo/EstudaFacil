@@ -155,7 +155,7 @@ footer {
 }
 
 /* Responsividade para telas menores */
-@media (max-width: 768px) {
+@media (max-width: 668px) {
     header h1 {
         font-size: 1.6rem;
     }
@@ -233,7 +233,7 @@ footer {
 
 
 /* Posicionamento do h1 no canto esquerdo em telas desktop */
-@media (min-width: 769px) {
+@media (min-width: 669px) {
   header {
     display: flex;
     align-items: center;
