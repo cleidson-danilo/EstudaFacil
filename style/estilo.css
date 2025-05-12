@@ -188,8 +188,10 @@ footer {
     }
 
     .btn {
-        padding: 10px 18px;
-        font-size: 0.95rem;
+        width: 100%; /* Botão ocupa toda a largura */
+        text-align: center; /* Centraliza o texto */
+        padding: 12px 20px; /* Ajusta o espaçamento interno */
+        font-size: 1rem; /* Tamanho de texto adequado */
     }
 
     table {
