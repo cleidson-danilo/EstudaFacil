@@ -217,8 +217,10 @@ footer {
     }
 
     .btn {
-        width: 100%;
-        text-align: center;
+        width: 100%; /* Botão ocupa toda a largura */
+        text-align: center; /* Centraliza o texto */
+        padding: 12px 20px; /* Ajusta o espaçamento interno */
+        font-size: 1rem; /* Tamanho de texto adequado */
     }
 
     section {
