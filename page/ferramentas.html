@@ -5,34 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EstudaFácil - Ferramentas</title>
   <link rel="stylesheet" href="../style/estilo.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-  <h1>EstudaFácil</h1>
-  <nav class="navbar">
-    <div class="menu-icon" onclick="toggleMenu()">
-      ☰
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="../index.html">Início</a></li>      
-      <li><a href="../page/sobre.html">Sobre</a></li>
-      <li><a href="../page/ferramentas.html"class="active">Ferramentas</a></li>
-      <li><a href="../page/dicas.html">Dicas</a></li>
-      <li><a href="../page/materiais.html">Materiais</a></li>
-      <li><a href="../page/contato.html">Contato</a></li>
-    </ul>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">EstudaFácil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/sobre.html">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../page/ferramentas.html">Ferramentas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/dicas.html">Dicas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/materiais.html">Materiais</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/contato.html">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav> 
 </header>
-<script>
-  function toggleMenu() {
-    const navLinks = document.getElementById("navLinks");
-    if (navLinks.style.display === "block") {
-      navLinks.style.display = "none";
-    } else {
-      navLinks.style.display = "block";
-    }
-  }
-</script>
   <section>
     <h2>Ferramentas de Estudo</h2>
     <p>Utilize nossos recursos interativos para facilitar sua jornada até a aprovação:</p>
@@ -47,8 +42,6 @@
   <footer>
     <p>&copy; 2025 EstudaFácil - Desenvolvido por estudantes de ADS</p>
   </footer>
-  <!-- Bootstrap JS (deve estar antes do </body>) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
