@@ -25,62 +25,33 @@
   </style>
 </head>
 <body>
-      <!-- Navbar Desktop -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm d-none d-lg-flex">
-    <div class="container">
-      <a class="navbar-brand fw-semibold" href="../index.html">EstudaFácil</a>
-      <div class="collapse navbar-collapse show">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="../page/sobre.html">Sobre</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Ferramentas</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">EstudaFácil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/sobre.html">Sobre</a></li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="./ferramentas.html" role="button" data-bs-toggle="dropdown">Ferramentas</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="cronograma.html"><i class="bi bi-calendar2-check me-1"></i> Cronograma</a></li>
-              <li><span class="dropdown-item active" href="checklist.html"><i class="bi bi-check2-square me-1"></i> Checklist</span></li>
-              <li><span class="dropdown-item disabled"><i class="bi bi-graph-up-arrow me-1"></i> Relatórios (em breve)</span></li>
+              <li><a class="dropdown-item" href="./ferramentas.html"><i class="bi bi-calendar2-check me-1"></i>Menu Ferramentas</a></li>
+              <li><a class="dropdown-item" href="./cronograma.html"><i class="bi bi-calendar2-check me-1"></i> Cronograma</a></li>
+              <li><a class="dropdown-item active" href="./checklist.html"><i class="bi bi-check2-square me-1"></i> Checklist</a></li>
+              <li><a class="dropdown-item" href="./relatorio.html"><i class="bi bi-graph-up-arrow me-1"></i> Relatórios</a></li>
             </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="../page/dicas.html">Dicas</a></li>
-          <li class="nav-item"><a class="nav-link" href="../page/materiais.html">Materiais</a></li>
-          <li class="nav-item"><a class="nav-link" href="../page/contato.html">Contato</a></li>
-        </ul>
+            </li>            
+            <li class="nav-item"><a class="nav-link" href="../page/dicas.html">Dicas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/materiais.html">Materiais</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/contato.html">Contato</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-
-  <!-- Navbar Mobile -->
-  <nav class="navbar bg-primary navbar-dark d-lg-none">
-    <div class="container d-flex justify-content-between">
-      <a class="navbar-brand fw-semibold" href="../index.html">EstudaFácil</a>
-      <button class="btn text-white fs-4 border-0" data-bs-toggle="offcanvas" data-bs-target="#menuMobile" title="Menu">
-        <i class="bi bi-list"></i>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Offcanvas Mobile -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="menuMobile">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title">Menu</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="list-unstyled">
-        <li><a href="../index.html" class="text-decoration-none d-block mb-2"><i class="bi bi-house-door me-2"></i>Início</a></li>
-        <li><a href="../page/sobre.html" class="text-decoration-none d-block mb-2"><i class="bi bi-info-circle me-2"></i>Sobre</a></li>
-        <li class="mb-2 fw-bold"><i class="bi bi-tools me-2"></i>Ferramentas:</li>
-        <ul class="ps-3 mb-3">
-          <li><a href="cronograma.html" class="text-decoration-none d-block"><i class="bi bi-calendar2-check me-2"></i>Cronograma</a></li>
-          <li><a href="checklist.html" class="text-decoration-none d-block"><i class="bi bi-calendar2-check me-2"></i>CheckList</a></li>
-          <li class="text-muted"><i class="bi bi-graph-up-arrow me-2"></i>Relatórios (em breve)</li>
-        </ul>
-        <li><a href="../page/dicas.html" class="text-decoration-none d-block mb-2"><i class="bi bi-lightbulb me-2"></i>Dicas</a></li>
-        <li><a href="../page/materiais.html" class="text-decoration-none d-block mb-2"><i class="bi bi-journal-text me-2"></i>Materiais</a></li>
-        <li><a href="../page/contato.html" class="text-decoration-none d-block"><i class="bi bi-envelope me-2"></i>Contato</a></li>
-    </ul>
-    </div>
-  </div>
+    </nav>
 
   <div class="container checklist-container">
     <h2 class="text-primary mb-4"><i class="bi bi-check2-square me-2"></i>Checklist de Tópicos</h2>

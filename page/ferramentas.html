@@ -18,25 +18,33 @@
   </style>
 </head>
 <body data-bs-theme="light">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="../index.html">EstudaFácil</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="../page/sobre.html">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link active" href="../page/ferramentas.html">Ferramentas</a></li>
-          <li class="nav-item"><a class="nav-link" href="../page/dicas.html">Dicas</a></li>
-          <li class="nav-item"><a class="nav-link" href="../page/materiais.html">Materiais</a></li>
-          <li class="nav-item"><a class="nav-link" href="../page/contato.html">Contato</a></li>
-        </ul>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">EstudaFácil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/sobre.html">Sobre</a></li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="./ferramentas.html" role="button" data-bs-toggle="dropdown">Ferramentas</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item active" href="./ferramentas.html"><i class="bi bi-calendar2-check me-1"></i>Menu Ferramentas</a></li>
+              <li><a class="dropdown-item" href="./cronograma.html"><i class="bi bi-calendar2-check me-1"></i> Cronograma</a></li>
+              <li><a class="dropdown-item" href="./checklist.html"><i class="bi bi-check2-square me-1"></i> Checklist</a></li>
+              <li><a class="dropdown-item" href="./relatorio.html"><i class="bi bi-graph-up-arrow me-1"></i> Relatórios</a></li>
+            </ul>
+            </li>            
+            <li class="nav-item"><a class="nav-link" href="../page/dicas.html">Dicas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../page/materiais.html">Materiais</a></li>
+            <li class="nav-item"><a class="nav-link " href="../page/contato.html">Contato</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <main class="container py-5">
     <div class="row justify-content-center">
@@ -72,7 +80,7 @@
               <div class="card-body">
                 <h5 class="card-title"><i class="bi bi-graph-up-arrow me-2"></i>Relatórios de Progresso</h5>
                 <p class="card-text">Visualize seu desempenho ao longo do tempo e ajuste seus métodos conforme os resultados.</p>
-                <a href="#" class="btn btn-outline-primary btn-sm mt-2 disabled">Em breve</a>
+                <a href="relatorio.html" class="btn btn-outline-primary btn-sm mt-2 ">Acessar Relatorio</a>
               </div>
             </div>
           </div>
