@@ -4,55 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EstudaFácil - Materiais</title>
+
+  <!-- Bootstrap CSS e Icons -->
   <link rel="stylesheet" href="../style/estilo.css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
-<body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html">EstudaFácil</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
-            <li class="nav-item"><a class="nav-link" href="../page/sobre.html">Sobre</a></li>
-            <li class="nav-item dropdown">
+<body data-bs-theme="light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">EstudaFácil</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="../page/sobre.html">Sobre</a></li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="./ferramentas.html" role="button" data-bs-toggle="dropdown">Ferramentas</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="./ferramentas.html"><i class="bi bi-calendar2-check me-1"></i>Menu Ferramentas</a></li>
+              <li><a class="dropdown-item" href="./ferramentas.html"><i class="bi bi-ui-checks-grid me-1"></i> Menu Ferramentas</a></li>
               <li><a class="dropdown-item" href="./cronograma.html"><i class="bi bi-calendar2-check me-1"></i> Cronograma</a></li>
               <li><a class="dropdown-item" href="./checklist.html"><i class="bi bi-check2-square me-1"></i> Checklist</a></li>
               <li><a class="dropdown-item" href="./relatorio.html"><i class="bi bi-graph-up-arrow me-1"></i> Relatórios</a></li>
             </ul>
-            </li>            
-            <li class="nav-item"><a class="nav-link" href="../page/dicas.html">Dicas</a></li>
-            <li class="nav-item"><a class="nav-link active" href="../page/materiais.html">Materiais</a></li>
-            <li class="nav-item"><a class="nav-link" href="../page/contato.html">Contato</a></li>
-          </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="../page/dicas.html">Dicas</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../page/materiais.html">Materiais</a></li>
+          <li class="nav-item"><a class="nav-link" href="../page/contato.html">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <main class="container py-5">
+    <h2 class="mb-4 text-primary text-center"><i class="bi bi-folder2-open me-2"></i>Materiais Gratuitos</h2>
+    <p class="text-center text-muted mb-5">Recursos essenciais para complementar sua preparação para concursos públicos:</p>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- Card 1 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-book me-2"></i> Apostila de Português</h5>
+            <p class="card-text">Conteúdo completo e atualizado em PDF com teoria e exercícios resolvidos.</p>
+          </div>
+          <div class="card-footer bg-transparent text-end">
+            <button class="btn btn-outline-secondary btn-sm" disabled><i class="bi bi-clock me-1"></i> Em breve</button>
+          </div>
         </div>
       </div>
-    </nav>
- 
-  </header>
-  <section>
-    <h2>Materiais Gratuitos</h2>
-    <p>Recursos essenciais para complementar sua preparação:</p>
-    <ul>
-      <li>📘 Apostila de Português PDF</li>
-      <li>📕 Resumo de Matemática para Concursos</li>
-      <li>📄 Simulados anteriores com gabarito</li>
-    </ul>
-    <a href="#" class="btn">Ver todos os materiais</a>
-  </section>
 
-  <footer>
-    <p>&copy; 2025 EstudaFácil - Desenvolvido por estudantes de ADS</p>
+      <!-- Card 2 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-calculator me-2"></i> Resumo de Matemática</h5>
+            <p class="card-text">Fórmulas, exemplos e dicas para resolver questões com mais facilidade.</p>
+          </div>
+          <div class="card-footer bg-transparent text-end">
+            <button class="btn btn-outline-secondary btn-sm" disabled><i class="bi bi-clock me-1"></i> Em breve</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-file-earmark-text me-2"></i> Simulados Anteriores</h5>
+            <p class="card-text">Provas anteriores com gabarito para testar seus conhecimentos na prática.</p>
+          </div>
+          <div class="card-footer bg-transparent text-end">
+            <button class="btn btn-outline-secondary btn-sm" disabled><i class="bi bi-clock me-1"></i> Em breve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="bg-primary text-white text-center py-4 mt-5">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 EstudaFácil - Desenvolvido por estudantes de ADS</p>
+    </div>
   </footer>
-  <!-- Bootstrap JS (deve estar antes do </body>) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
