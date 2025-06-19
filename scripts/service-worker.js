@@ -1,16 +1,16 @@
 const CACHE_NAME = "estudafacil-v1";
 const urlsToCache = [
-  "/index.html",
-  "/page/cronograma.html",
-  "/page/checklist.html",
-  "/page/relatorio.html",
-  "/page/dicas.html",
-  "/page/materiais.html",
-  "/page/contato.html",
-  "/page/sobre.html",
-  "/style/estilo.css",
-  "/image/studying.ico",
-  "/image/studying.png"
+  "../index.html",
+  "../page/cronograma.html",
+  "../page/checklist.html",
+  "../page/relatorio.html",
+  "../page/dicas.html",
+  "../page/materiais.html",
+  "../page/contato.html",
+  "../page/sobre.html",
+  "../style/estilo.css",
+  "../image/studying.ico",
+  "../image/studying.png"
 ];
 
 self.addEventListener("install", event => {
