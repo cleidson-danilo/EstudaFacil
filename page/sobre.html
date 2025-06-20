@@ -75,7 +75,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/scripts/service-worker.js')
+    navigator.serviceWorker.register('./scripts/service-worker.js')
       .then(registration => {
         console.log('Service Worker registrado com sucesso:', registration);
       })
