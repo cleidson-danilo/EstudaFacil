@@ -438,49 +438,64 @@
 
   // Função para baixar a tabela como PDF
   async function baixarPDF() {
-    // Clona a tabela para remover a coluna "Ações" antes de exportar
     const tabelaOriginal = document.querySelector('.table-responsive table');
     const tabelaClone = tabelaOriginal.cloneNode(true);
 
-    // Remove a coluna "Ações" do thead (se existir)
-    const ths = tabelaClone.querySelectorAll('thead th');
-    let acoesIdx = -1;
-    ths.forEach((th, idx) => {
-      if (th.innerText.trim().toLowerCase() === 'ações') {
-        acoesIdx = idx;
-        th.parentNode.removeChild(th);
-      }
-    });
-    // Remove a coluna "Ações" de cada linha do tbody
-    if (acoesIdx !== -1) {
-      tabelaClone.querySelectorAll('tbody tr').forEach(tr => {
-        if (tr.children[acoesIdx]) tr.removeChild(tr.children[acoesIdx]);
-      });
-    }
-
-    // Cria um container temporário para renderizar a tabela sem a coluna "Ações"
+    // Cria um container temporário para renderizar a tabela
     const tempDiv = document.createElement('div');
     tempDiv.style.position = 'fixed';
     tempDiv.style.left = '-9999px';
+    tempDiv.style.background = '#fff';
+    tempDiv.style.padding = '20px';
+    tempDiv.style.borderRadius = '10px';
+    tempDiv.style.boxShadow = '0 0 10px rgba(0,0,0,0.08)';
     tempDiv.appendChild(tabelaClone);
+
+    // Adiciona título estilizado com logo acima da tabela
+    const titulo = document.createElement('div');
+    titulo.style.display = 'flex';
+    titulo.style.alignItems = 'center';
+    titulo.style.justifyContent = 'center';
+    titulo.style.marginBottom = '18px';
+    titulo.innerHTML = `
+      <img src="../image/studying.ico" style="width:32px;height:32px;margin-right:12px;">
+      <span style="font-size: 2rem; color: #1e3a8a; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
+        Cronograma de Estudos
+      </span>
+    `;
+    tempDiv.insertBefore(titulo, tabelaClone);
+
     document.body.appendChild(tempDiv);
 
-    // Usa html2canvas na tabela clonada
-    const canvas = await html2canvas(tabelaClone);
+    // Usa html2canvas na div temporária (inclui título)
+    const canvas = await html2canvas(tempDiv, { backgroundColor: "#fff" });
     const imgData = canvas.toDataURL('image/png');
 
     const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
 
     const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
     const imgProps = pdf.getImageProperties(imgData);
-    const imgWidth = pageWidth - 20;
-    const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
 
-    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+    // Calcula altura proporcional para caber na página
+    let imgWidth = pageWidth - 20;
+    let imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+    if (imgHeight > pageHeight - 20) {
+      imgHeight = pageHeight - 20;
+      imgWidth = (imgProps.width * imgHeight) / imgProps.height;
+    }
+
+    // Centraliza verticalmente se sobrar espaço
+    const y = (pageHeight - imgHeight) / 2 > 10 ? (pageHeight - imgHeight) / 2 : 10;
+
+    pdf.addImage(imgData, 'PNG', (pageWidth - imgWidth) / 2, y, imgWidth, imgHeight);
     pdf.save('cronograma-estudos.pdf');
 
-    // Remove o container temporário
     document.body.removeChild(tempDiv);
   }
 </script>
@@ -540,6 +555,6 @@
     window.addEventListener('online', toggleOfflineAlert);
     window.addEventListener('offline', toggleOfflineAlert);
   </script>
+
 </body>
-</html>
 </html>
