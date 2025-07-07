@@ -1,18 +1,18 @@
 {
   "name": "EstudaFácil",
   "short_name": "EstudaFácil",
-  "start_url": "/EstudaFacil/",
+  "start_url": "/EstudaFacil/",  
   "display": "standalone",
   "background_color": "#f0f4f8",
   "theme_color": "#0d6efd",
   "icons": [
     {
-      "src": "../image/studying192.png",
+      "src": "image/studying192.png", 
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "../image/studying512.png",
+      "src": "image/studying512.png",  
       "sizes": "512x512",
       "type": "image/png"
     }
