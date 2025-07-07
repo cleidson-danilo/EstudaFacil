@@ -91,29 +91,53 @@
         <label for="hora" class="form-label">Horário</label>
         <input type="time" class="form-control" id="hora" required />
       </div>
+      <!-- NOVO CAMPO LEMBRETE -->
+      <div class="col-12">
+        <label for="lembrete" class="form-label">Lembrete (opcional)</label>
+        <input type="text" class="form-control" id="lembrete" maxlength="120" placeholder="Ex: revisar capítulo 3, fazer exercícios, etc." />
+      </div>
       <div class="col-12 text-end">
         <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Adicionar</button>
       </div>
     </form>
   </div>
 
+  <!-- TABELA COM SCROLL PARA MOBILE -->
   <div class="table-responsive mb-3">
-    <table class="table table-bordered table-hover">
-      <thead class="table-primary">
-        <tr>
-          <th>Matéria</th>
-          <th>Dia</th>
-          <th>Horário</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody id="tabelaCronograma"></tbody>
-    </table>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-bordered table-hover align-middle text-center">
+        <thead class="table-primary">
+          <tr>
+            <th colspan="4" class="text-center fw-bold fs-5 text-primary">Cronograma de Estudos</th>
+          </tr>
+          <tr>
+            <th>Matéria</th>
+            <th>Dia</th>
+            <th>Horário</th>
+            <th>Lembrete</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaCronograma"></tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <!-- Coluna de ações fora da tabela, à direita -->
+      <div id="acoesCronograma" class="d-flex flex-column gap-2 mt-2"></div>
+    </div>
   </div>
+</div>
 
-  <div class="text-end">
+  <!-- BOTÕES DE AÇÃO FINAIS -->
+  <div class="d-flex justify-content-end flex-wrap gap-2">
+    <!-- Botão Baixar PDF -->
+    <button class="btn btn-outline-primary btn-sm" onclick="baixarPDF()">
+      <i class="bi bi-file-earmark-arrow-down me-1"></i> Baixar PDF
+    </button>
+
+    <!-- Botão Limpar -->
     <button class="btn btn-outline-danger btn-sm" onclick="limparCronograma()">
-      <i class="bi bi-x-circle me-1"></i>Limpar Cronograma
+      <i class="bi bi-x-circle me-1"></i> Limpar Cronograma
     </button>
   </div>
 </div>
@@ -126,7 +150,7 @@
   <div id="toastAjuda" class="toast align-items-center text-bg-info border-0" role="alert">
     <div class="d-flex">
       <div class="toast-body">
-        <p>1. Preencha a matéria, dia e horário e clique em Adicionar. O cronograma é salvo automaticamente!</p>
+        <p>1. Preencha a matéria, dia, horário e lembrete depois clique em Adicionar. O cronograma é salvo automaticamente!</p>
         <p>2. Use o botão Google Agenda para adicionar eventos diretamente na sua agenda.</p>
         <p>3. Você pode remover itens clicando no botão Remover ao lado de cada entrada.</p>
         <p>4. Para limpar todo o cronograma, clique no botão Limpar Cronograma.</p>
@@ -151,9 +175,32 @@
     "Sábado": 6
   };
 
+  const ordemDias = [
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sábado",
+    "Domingo"
+  ];
+
+  // Função para ordenar os dados por dia da semana
+  function ordenarPorDia(dados) {
+    return dados.slice().sort((a, b) => {
+      const idxA = ordemDias.indexOf(a.dia);
+      const idxB = ordemDias.indexOf(b.dia);
+      if (idxA !== idxB) return idxA - idxB;
+      // Se o dia for igual, ordena por horário
+      return (a.hora || '').localeCompare(b.hora || '');
+    });
+  }
+
+  // Carregamento inicial já ordenando
   document.addEventListener('DOMContentLoaded', () => {
     const dadosSalvos = JSON.parse(localStorage.getItem('cronograma')) || [];
-    dadosSalvos.forEach(item => adicionarLinha(item.materia, item.dia, item.hora));
+    const dadosOrdenados = ordenarPorDia(dadosSalvos);
+    dadosOrdenados.forEach(item => adicionarLinha(item.materia, item.dia, item.hora, item.lembrete));
   });
 
   form.addEventListener('submit', function (e) {
@@ -161,6 +208,7 @@
     const materia = document.getElementById('materia').value.trim();
     const dia = document.getElementById('dia').value;
     const hora = document.getElementById('hora').value;
+    const lembrete = document.getElementById('lembrete').value.trim();
 
     if (!materia || !dia || !hora) return;
 
@@ -174,36 +222,109 @@
       return;
     }
 
-    adicionarLinha(materia, dia, hora);
-    salvarDados();
+    // Adiciona ao localStorage e re-renderiza ordenado
+    const dados = JSON.parse(localStorage.getItem('cronograma')) || [];
+    dados.push({ materia, dia, hora, lembrete });
+    const dadosOrdenados = ordenarPorDia(dados);
+    localStorage.setItem('cronograma', JSON.stringify(dadosOrdenados));
+    renderizarTabela(dadosOrdenados);
     form.reset();
   });
 
-  function adicionarLinha(materia, dia, hora) {
-    const novaLinha = document.createElement('tr');
-    const linkAgenda = gerarLinkGoogleAgenda(materia, dia, hora);
+  // Função para renderizar toda a tabela ordenada
+  function renderizarTabela(dados) {
+    tabela.innerHTML = '';
+    document.getElementById('acoesCronograma').innerHTML = '';
+    dados.forEach((item, idx) => adicionarLinha(item.materia, item.dia, item.hora, item.lembrete, idx));
+  }
 
+  function adicionarLinha(materia, dia, hora, lembrete = "", idx = null) {
+    const novaLinha = document.createElement('tr');
     novaLinha.innerHTML = `
       <td>${materia}</td>
       <td>${dia}</td>
       <td>${hora}</td>
-      <td>
-        <button class="btn btn-sm btn-danger me-2" onclick="removerLinha(this)">
-          <i class="bi bi-trash3-fill"></i> Remover
-        </button>
-        <a href="${linkAgenda}" target="_blank" class="btn btn-sm btn-success">
-          <i class="bi bi-calendar-event"></i> Google Agenda
-        </a>
-      </td>
+      <td>${lembrete || '-'}</td>
     `;
     tabela.appendChild(novaLinha);
+
+    // Cria o bloco de ações correspondente fora da tabela
+    const acoesDiv = document.createElement('div');
+    acoesDiv.className = "d-flex align-items-center gap-2 border rounded p-2 bg-light";
+    acoesDiv.style.maxWidth = "600px";
+    acoesDiv.style.margin = "0 auto";
+    // Mostra "Linha X" ao invés da descrição
+    const numeroLinha = (tabela.rows.length);
+    acoesDiv.innerHTML = `
+      <span class="text-secondary small me-2"><b>Linha ${numeroLinha}</b></span>
+      <button class="btn btn-outline-danger btn-sm" title="Remover">
+        <i class="bi bi-trash3-fill"></i>
+      </button>
+      <a href="${gerarLinkGoogleAgenda(materia, dia, hora, lembrete)}" target="_blank" class="btn btn-outline-success btn-sm" title="Adicionar ao Google Agenda">
+        <i class="bi bi-calendar-event"></i> Google Agenda
+      </a>
+    `;
+    // Evento de remover com alerta personalizado
+    acoesDiv.querySelector('button').onclick = function () {
+      mostrarAlertaRemoverLinhaForaTabela(novaLinha, acoesDiv);
+    };
+    document.getElementById('acoesCronograma').appendChild(acoesDiv);
   }
 
-  function removerLinha(botao) {
-    if (confirm("Tem certeza que deseja remover este item?")) {
-      botao.closest('tr').remove();
-      salvarDados();
+  // Novo alerta personalizado para remover linha fora da tabela
+  function mostrarAlertaRemoverLinhaForaTabela(linha, acoesDiv) {
+    let modal = document.getElementById('modalRemover');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.innerHTML = `
+        <div class="modal fade" id="modalRemover" tabindex="-1" aria-labelledby="modalRemoverLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalRemoverLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i>Remover Item</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body">
+                Tem certeza que deseja remover este item do cronograma?<br>
+                <small class="text-muted">Esta ação não poderá ser desfeita.</small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger btn-sm" id="btnConfirmarRemover">Remover</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
     }
+    const modalInstance = new bootstrap.Modal(document.getElementById('modalRemover'));
+    modalInstance.show();
+
+    const btnConfirmar = document.getElementById('btnConfirmarRemover');
+    btnConfirmar.onclick = null;
+    btnConfirmar.onclick = function () {
+      linha.remove();
+      acoesDiv.remove();
+      // Atualiza localStorage e reordena
+      const linhas = tabela.querySelectorAll('tr');
+      const dados = [];
+      linhas.forEach(linha => {
+        const colunas = linha.querySelectorAll('td');
+        if (colunas.length >= 4) {
+          dados.push({
+            materia: colunas[0].innerText,
+            dia: colunas[1].innerText,
+            hora: colunas[2].innerText,
+            lembrete: colunas[3].innerText
+          });
+        }
+      });
+      const dadosOrdenados = ordenarPorDia(dados);
+      localStorage.setItem('cronograma', JSON.stringify(dadosOrdenados));
+      renderizarTabela(dadosOrdenados);
+      modalInstance.hide();
+    };
   }
 
   function salvarDados() {
@@ -211,18 +332,20 @@
     const dados = [];
     linhas.forEach(linha => {
       const colunas = linha.querySelectorAll('td');
-      if (colunas.length >= 3) {
+      if (colunas.length >= 4) {
         dados.push({
           materia: colunas[0].innerText,
           dia: colunas[1].innerText,
-          hora: colunas[2].innerText
+          hora: colunas[2].innerText,
+          lembrete: colunas[3].innerText
         });
       }
     });
     localStorage.setItem('cronograma', JSON.stringify(dados));
   }
 
-  function gerarLinkGoogleAgenda(materia, diaSemana, horaStr) {
+  // Atualizada para incluir lembrete nos detalhes do evento
+  function gerarLinkGoogleAgenda(materia, diaSemana, horaStr, lembrete = "") {
     const agora = new Date();
     const hoje = agora.getDay();
     const destino = diasSemana[diaSemana] ?? 0;
@@ -247,11 +370,15 @@
     const startISO = formatarData(dataInicio);
     const endISO = formatarData(dataFim);
 
+    const detalhes = lembrete
+      ? `Estudo da matéria ${materia} pelo EstudaFácil. Lembrete: ${lembrete}`
+      : `Estudo da matéria ${materia} pelo EstudaFácil`;
+
     const params = new URLSearchParams({
       action: 'TEMPLATE',
       text: `Estudar: ${materia}`,
       dates: `${startISO}/${endISO}`,
-      details: `Estudo da matéria ${materia} pelo EstudaFácil`,
+      details: detalhes,
       location: 'Online',
       trp: 'false',
     });
@@ -266,12 +393,96 @@
   }
 
   function limparCronograma() {
-    if (confirm("Deseja apagar todo o cronograma?")) {
-      tabela.innerHTML = '';
-      localStorage.removeItem('cronograma');
-    }
+    mostrarAlertaLimpar();
   }
 
+  // Alerta personalizado para limpar cronograma
+  function mostrarAlertaLimpar() {
+    let modal = document.getElementById('modalLimpar');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.innerHTML = `
+        <div class="modal fade" id="modalLimpar" tabindex="-1" aria-labelledby="modalLimparLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalLimparLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i>Limpar Cronograma</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body">
+                Tem certeza que deseja apagar <strong>todo o cronograma</strong>?<br>
+                <small class="text-muted">Esta ação não poderá ser desfeita.</small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger btn-sm" id="btnConfirmarLimpar">Limpar Tudo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    const modalInstance = new bootstrap.Modal(document.getElementById('modalLimpar'));
+    modalInstance.show();
+
+    const btnConfirmar = document.getElementById('btnConfirmarLimpar');
+    btnConfirmar.onclick = null;
+    btnConfirmar.onclick = function () {
+      tabela.innerHTML = '';
+      localStorage.removeItem('cronograma');
+      modalInstance.hide();
+    };
+  }
+
+  // Função para baixar a tabela como PDF
+  async function baixarPDF() {
+    // Clona a tabela para remover a coluna "Ações" antes de exportar
+    const tabelaOriginal = document.querySelector('.table-responsive table');
+    const tabelaClone = tabelaOriginal.cloneNode(true);
+
+    // Remove a coluna "Ações" do thead (se existir)
+    const ths = tabelaClone.querySelectorAll('thead th');
+    let acoesIdx = -1;
+    ths.forEach((th, idx) => {
+      if (th.innerText.trim().toLowerCase() === 'ações') {
+        acoesIdx = idx;
+        th.parentNode.removeChild(th);
+      }
+    });
+    // Remove a coluna "Ações" de cada linha do tbody
+    if (acoesIdx !== -1) {
+      tabelaClone.querySelectorAll('tbody tr').forEach(tr => {
+        if (tr.children[acoesIdx]) tr.removeChild(tr.children[acoesIdx]);
+      });
+    }
+
+    // Cria um container temporário para renderizar a tabela sem a coluna "Ações"
+    const tempDiv = document.createElement('div');
+    tempDiv.style.position = 'fixed';
+    tempDiv.style.left = '-9999px';
+    tempDiv.appendChild(tabelaClone);
+    document.body.appendChild(tempDiv);
+
+    // Usa html2canvas na tabela clonada
+    const canvas = await html2canvas(tabelaClone);
+    const imgData = canvas.toDataURL('image/png');
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const imgProps = pdf.getImageProperties(imgData);
+    const imgWidth = pageWidth - 20;
+    const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+
+    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+    pdf.save('cronograma-estudos.pdf');
+
+    // Remove o container temporário
+    document.body.removeChild(tempDiv);
+  }
 </script>
 
 <!-- ALERTA OFFLINE COM BOTÃO X -->
@@ -287,6 +498,10 @@
 
   <!-- Bootstrap + Script Offline -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts para exportação em PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('../scripts/service-worker.js')
@@ -326,4 +541,5 @@
     window.addEventListener('offline', toggleOfflineAlert);
   </script>
 </body>
+</html>
 </html>
