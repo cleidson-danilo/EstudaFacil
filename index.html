@@ -4,72 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EstudaFácil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./style/estilo.css" />
-    <link rel="icon" type="image/x-icon" href="image/studying.ico">    
-    <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Organize seus estudos e conquiste sua aprovação em concursos públicos com nossas ferramentas, dicas e materiais gratuitos.">
+  <meta name="keywords" content="EstudaFácil, concursos públicos, cronograma, materiais de estudo, técnicas de memorização">
+  <meta name="author" content="Cleidson Danilo">
+  <meta name="robots" content="index, follow">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGPL6HLNY4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EGPL6HLNY4');
+  </script>
+
+  <!-- AOS - Animate On Scroll CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Bootstrap & Estilo -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="./style/estilo.css" />
+  <link rel="icon" type="image/x-icon" href="image/studying.ico">    
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <img src="image/studying.ico" alt="Logo EstudaFácil" width="32" height="32" class="me-2">
-          EstudaFácil
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li>
-            <li class="nav-item"><a class="nav-link" href="page/sobre.html">Sobre</a></li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="page/ferramentas.html" role="button" data-bs-toggle="dropdown">Ferramentas</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="page/ferramentas.html"><i class="bi bi-ui-checks-grid me-1"></i> Menu Ferramentas</a></li>
-              <li><a class="dropdown-item" href="page/cronograma.html"><i class="bi bi-calendar2-check me-1"></i> Cronograma</a></li>
-              <li><a class="dropdown-item" href="page/checklist.html"><i class="bi bi-check2-square me-1"></i> Checklist</a></li>
-              <li><a class="dropdown-item" href="page/relatorio.html"><i class="bi bi-graph-up-arrow me-1"></i> Relatórios</a></li>
-            </ul>
-            </li>            
-            <li class="nav-item"><a class="nav-link" href="page/dicas.html">Dicas</a></li>
-            <li class="nav-item"><a class="nav-link" href="page/materiais.html">Materiais</a></li>
-            <li class="nav-item"><a class="nav-link" href="page/contato.html">Contato</a></li>
-            <li class="nav-item"><a class="nav-link" href="page/instalar.html">Instalar</a></li>
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="image/studying.ico" alt="Logo EstudaFácil" width="32" height="32" class="me-2">
+      EstudaFácil
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="page/sobre.html">Sobre</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="page/ferramentas.html" role="button" data-bs-toggle="dropdown">Ferramentas</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="page/ferramentas.html"><i class="bi bi-ui-checks-grid me-1"></i> Menu Ferramentas</a></li>
+            <li><a class="dropdown-item" href="page/cronograma.html"><i class="bi bi-calendar2-check me-1"></i> Cronograma</a></li>
+            <li><a class="dropdown-item" href="page/checklist.html"><i class="bi bi-check2-square me-1"></i> Checklist</a></li>
+            <li><a class="dropdown-item" href="page/relatorio.html"><i class="bi bi-graph-up-arrow me-1"></i> Relatórios</a></li>
           </ul>
-        </div>
-      </div>
-    </nav>
+        </li>            
+        <li class="nav-item"><a class="nav-link" href="page/dicas.html">Dicas</a></li>
+        <li class="nav-item"><a class="nav-link" href="page/materiais.html">Materiais</a></li>
+        <li class="nav-item"><a class="nav-link" href="page/contato.html">Contato</a></li>
+        <li class="nav-item"><a class="nav-link" href="page/instalar.html">Instalar</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <!-- CONTEÚDO -->
-<section>
+<section data-aos="fade-up" data-aos-duration="1000">
   <h2 class="text-primary">Bem-vindo ao EstudaFácil</h2>
   <p>Organize seus estudos e conquiste sua aprovação em concursos públicos com nossas ferramentas, dicas e materiais gratuitos.</p>
   <ul class="list-unstyled">
-    <li><i class="bi bi-calendar2-check text-primary me-2"></i>Crie seu cronograma de estudos</li>
-    <li><i class="bi bi-journal-bookmark-fill text-success me-2"></i>Acesse conteúdos gratuitos</li>
-    <li><i class="bi bi-lightbulb-fill text-warning me-2"></i>Descubra técnicas de memorização</li>
+    <li data-aos="fade-right" data-aos-delay="200"><i class="bi bi-calendar2-check text-primary me-2"></i>Crie seu cronograma de estudos</li>
+    <li data-aos="fade-right" data-aos-delay="300"><i class="bi bi-journal-bookmark-fill text-success me-2"></i>Acesse conteúdos gratuitos</li>
+    <li data-aos="fade-right" data-aos-delay="400"><i class="bi bi-lightbulb-fill text-warning me-2"></i>Descubra técnicas de memorização</li>
   </ul>
-  <a href="./page/ferramentas.html" class="btn">Comece agora</a>
+  <a href="./page/ferramentas.html" class="btn btn-primary mt-2" data-aos="zoom-in" data-aos-delay="500">Comece agora</a>
 </section>
 
-<section id="sobre">
+<section id="sobre" class="mt-5" data-aos="fade-up" data-aos-delay="100">
   <h2 class="text-primary">Sobre o EstudaFácil</h2>
   <p>O EstudaFácil é uma plataforma desenvolvida para ajudar estudantes a se organizarem e se prepararem para concursos públicos. Com ferramentas práticas e dicas valiosas, buscamos tornar o processo de estudo mais eficiente e acessível.</p> 
   
-  <h2 class="text-primary">Nossa Missão</h2>
+  <h2 class="text-primary" data-aos="fade-left" data-aos-delay="150">Nossa Missão</h2>
   <p>Capacitar estudantes de concursos com uma plataforma prática, acessível e eficiente.</p>
 
-  <h3 class="text-primary">Visão</h3>
+  <h3 class="text-primary" data-aos="fade-left" data-aos-delay="200">Visão</h3>
   <p>Ser referência em organização de estudos no Brasil até 2030.</p>
 
-  <h3 class="text-primary">Quem Somos</h3>
+  <h3 class="text-primary" data-aos="fade-left" data-aos-delay="300">Quem Somos</h3>
   <p>Um grupo de estudantes de Análise e Desenvolvimento de Sistemas apaixonados por educação e tecnologia.</p>
 </section>
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- AOS Script -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<!-- Service Worker -->
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./scripts/service-worker.js')
@@ -81,6 +109,5 @@
       });
   }
 </script>
-
 </body>
 </html>

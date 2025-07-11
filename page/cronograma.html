@@ -5,33 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EstudaFácil - Cronograma</title>
   <link rel="icon" type="image/x-icon" href="../image/studying.ico">
+  <meta name="description" content="Monte seu cronograma de estudos com facilidade e organize sua rotina para concursos públicos.">
+  <meta name="keywords" content="EstudaFácil, cronograma de estudos, concursos públicos, planejamento semanal">
+  <meta name="theme-color" content="#1e3a8a">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGPL6HLNY4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EGPL6HLNY4');
+  </script>
+
+  <!-- AOS Animation CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="manifest" href="../manifest.json">
-  <meta name="theme-color" content="#1e3a8a">
   <style>
-    body {
-      background-color: #f0f4f8;
+  body {
+    background-color: #f0f4f8;
+  }
+  .form-section {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+  .floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1055;
+  }
+  .toast-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1060;
+  }
+
+  /* ANIMAÇÃO PARA NOVA LINHA */
+  @keyframes fadeInRow {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
-    .form-section {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .floating-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1055;
-    }
-    .toast-container {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      z-index: 1060;
-    }
-  </style>
+  }
+  .animated-row {
+    animation: fadeInRow 0.6s ease;
+  }
+</style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
@@ -67,7 +98,7 @@
 </nav>
 
 <div class="container py-5">
-  <h2 class="text-primary mb-4"><i class="bi bi-calendar2-check me-2"></i>Cronograma de Estudos</h2>
+  <h2 class="text-primary mb-4"><i class="bi bi-calendar2-check me-2"></i>Cronograma de Estudos</h2> 
   <div class="form-section mb-4">
     <form id="cronogramaForm" class="row g-3">
       <div class="col-md-4">
@@ -93,7 +124,7 @@
       </div>
       <!-- NOVO CAMPO LEMBRETE -->
       <div class="col-12">
-        <label for="lembrete" class="form-label">Lembrete (opcional)</label>
+        <label for="lembrete" class="form-label">Lembrete (opcional)</label> 
         <input type="text" class="form-control" id="lembrete" maxlength="120" placeholder="Ex: revisar capítulo 3, fazer exercícios, etc." />
       </div>
       <div class="col-12 text-end">
@@ -103,7 +134,7 @@
   </div>
 
   <!-- TABELA COM SCROLL PARA MOBILE -->
-  <div class="table-responsive mb-3">
+  <div class="table-responsive mb-3"> 
   <div class="row">
     <div class="col-md-9">
       <table class="table table-bordered table-hover align-middle text-center">
@@ -239,37 +270,38 @@
   }
 
   function adicionarLinha(materia, dia, hora, lembrete = "", idx = null) {
-    const novaLinha = document.createElement('tr');
-    novaLinha.innerHTML = `
-      <td>${materia}</td>
-      <td>${dia}</td>
-      <td>${hora}</td>
-      <td>${lembrete || '-'}</td>
-    `;
-    tabela.appendChild(novaLinha);
+  const novaLinha = document.createElement('tr');
+  novaLinha.classList.add('animated-row'); // <-- animação ao adicionar linha
+  novaLinha.innerHTML = `
+    <td>${materia}</td>
+    <td>${dia}</td>
+    <td>${hora}</td>
+    <td>${lembrete || '-'}</td>
+  `;
+  tabela.appendChild(novaLinha);
 
-    // Cria o bloco de ações correspondente fora da tabela
-    const acoesDiv = document.createElement('div');
-    acoesDiv.className = "d-flex align-items-center gap-2 border rounded p-2 bg-light";
-    acoesDiv.style.maxWidth = "600px";
-    acoesDiv.style.margin = "0 auto";
-    // Mostra "Linha X" ao invés da descrição
-    const numeroLinha = (tabela.rows.length);
-    acoesDiv.innerHTML = `
-      <span class="text-secondary small me-2"><b>Linha ${numeroLinha}</b></span>
-      <button class="btn btn-outline-danger btn-sm" title="Remover">
-        <i class="bi bi-trash3-fill"></i>
-      </button>
-      <a href="${gerarLinkGoogleAgenda(materia, dia, hora, lembrete)}" target="_blank" class="btn btn-outline-success btn-sm" title="Adicionar ao Google Agenda">
-        <i class="bi bi-calendar-event"></i> Google Agenda
-      </a>
-    `;
-    // Evento de remover com alerta personalizado
-    acoesDiv.querySelector('button').onclick = function () {
-      mostrarAlertaRemoverLinhaForaTabela(novaLinha, acoesDiv);
-    };
-    document.getElementById('acoesCronograma').appendChild(acoesDiv);
-  }
+  // Cria o bloco de ações correspondente fora da tabela
+  const acoesDiv = document.createElement('div');
+  acoesDiv.className = "d-flex align-items-center gap-2 border rounded p-2 bg-light";
+  acoesDiv.style.maxWidth = "600px";
+  acoesDiv.style.margin = "0 auto";
+
+  const numeroLinha = (tabela.rows.length);
+  acoesDiv.innerHTML = `
+    <span class="text-secondary small me-2"><b>Linha ${numeroLinha}</b></span>
+    <button class="btn btn-outline-danger btn-sm" title="Remover">
+      <i class="bi bi-trash3-fill"></i>
+    </button>
+    <a href="${gerarLinkGoogleAgenda(materia, dia, hora, lembrete)}" target="_blank" class="btn btn-outline-success btn-sm" title="Adicionar ao Google Agenda">
+      <i class="bi bi-calendar-event"></i> Google Agenda
+    </a>
+  `;
+  acoesDiv.querySelector('button').onclick = function () {
+    mostrarAlertaRemoverLinhaForaTabela(novaLinha, acoesDiv);
+  };
+  document.getElementById('acoesCronograma').appendChild(acoesDiv);
+}
+
 
   // Novo alerta personalizado para remover linha fora da tabela
   function mostrarAlertaRemoverLinhaForaTabela(linha, acoesDiv) {
@@ -555,6 +587,7 @@
     window.addEventListener('online', toggleOfflineAlert);
     window.addEventListener('offline', toggleOfflineAlert);
   </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800, once: true });</script>
 </body>
 </html>
